@@ -1,7 +1,7 @@
 #ifndef MY_HELPERS_H
 #define MY_HELPERS_H
 
-#include "my_decimal.h"
+#include "../my_decimal.h"
 
 typedef struct {
   unsigned bits[8];

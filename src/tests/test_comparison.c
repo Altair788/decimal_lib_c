@@ -4,4 +4,4 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../headers/my_decimal.h"
+#include "../my_decimal.h"
