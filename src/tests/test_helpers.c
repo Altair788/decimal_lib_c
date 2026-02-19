@@ -92,6 +92,16 @@ START_TEST(my_get_scale_basic){
 END_TEST
 
 
+START_TEST(my_get_sign_basic){
+    my_decimal val = {{0, 0, 0, 0}};
+    val.bits[3] = 1 << 31;
+    int result = my_get_sign(&val);
+    ck_assert_int_eq(result, 1);
+
+}
+END_TEST
+
+
 Suite* my_helpers_suite(void) {
     Suite *s = suite_create("helpers");
     TCase *tc_core = tcase_create("Core");
@@ -106,6 +116,7 @@ Suite* my_helpers_suite(void) {
     tcase_add_test(tc_core, my_get_bit_basic);
     tcase_add_test(tc_core, my_set_bit_basic);
     tcase_add_test(tc_core, my_get_scale_basic);
+    tcase_add_test(tc_core, my_get_sign_basic);
 
 
     suite_add_tcase(s, tc_core);
