@@ -2,6 +2,7 @@
 #include "../headers/my_helpers.h"
 
 #define S21_BIG_DECIMAL_DATA_BITS 3
+#define ERROR 1
 
 // возвращает 1, если первые три бита zero, иначе 0
 int my_is_zero(my_decimal value) {
@@ -20,6 +21,10 @@ int my_is_zero(my_decimal value) {
 }
 
 void my_null_decimal(my_decimal* value) {
+    memset(value, 0, sizeof(*value));
+}
+
+void my_null_big_decimal(my_big_decimal* value) {
     memset(value, 0, sizeof(*value));
 }
 
@@ -74,4 +79,17 @@ int my_get_sign(my_decimal* value) {
         sign = (value->bits[3] &= 1u << 31) != 0;
     }
     return sign;
+}
+
+int my_set_sign(my_big_decimal* value1, my_decimal* value2) {
+    if (value1 && value2) {
+        if (value1->sign == 1) {
+            value2->bits[3] |= 1u << 31;
+        } else {
+            value2->bits[3] &= ~(1u << 31);
+        }
+    } else {
+        return ERROR;
+    }
+    return 0;
 }
