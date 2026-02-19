@@ -22,3 +22,15 @@ int my_is_zero(my_decimal value) {
 void my_null_decimal(my_decimal* value) {
     memset(value, 0, sizeof(*value));
 }
+
+
+int my_get_bit(my_decimal value, int index_of_bit) {
+    if (index_of_bit < 0 || index_of_bit >= 96) {
+        return 0;
+    }
+
+    int index_word = index_of_bit / 32;
+    int bit_in_word = index_of_bit % 32;
+
+    return (value.bits[index_word] >> bit_in_word) &1;
+}
