@@ -67,3 +67,11 @@ int my_get_scale(my_decimal* value) {
         return scale;
     }
 }
+
+int my_get_sign(my_decimal* value) {
+    int sign = 0;
+    if (value) {
+        sign = (value->bits[3] &= 1u << 31) != 0;
+    }
+    return sign;
+}
