@@ -52,3 +52,18 @@ int my_set_bit(my_decimal* value, int bit_index, int bit_value) {
     }
     return 0;
 }
+
+int my_get_scale(my_decimal* value) {
+    int scale = 0;
+    if (!value) {
+        return 0;
+    } else {
+        scale = value->bits[3] >> 16 & 0xFF;
+    }
+
+    if (scale > 28) {
+        return 0;
+    } else {
+        return scale;
+    }
+}

@@ -11,7 +11,7 @@ my_big_decimal my_decimal_to_big(my_decimal value);               // TODO
 my_decimal my_big_to_decimal(my_big_decimal value);               // TODO
 int my_get_sign(my_decimal value);                                 // TODO
 int my_set_sign(my_decimal* value, int sign);                      // TODO
-int my_get_scale(my_decimal value);                                // TODO
+int my_get_scale(my_decimal* value);                                // TODO
 int my_set_scale(my_decimal* value, int scale);                    // TODO
 int my_get_bit(my_decimal value, int bit_index);                   // TODO
 int my_set_bit(my_decimal* value, int bit_index, int bit_value);   // TODO
