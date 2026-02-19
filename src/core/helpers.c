@@ -1,3 +1,4 @@
+#include <string.h>
 #include "../headers/my_helpers.h"
 
 #define S21_BIG_DECIMAL_DATA_BITS 3
@@ -16,4 +17,8 @@ int my_is_zero(my_decimal value) {
     }
     
     return result;
+}
+
+void my_null_decimal(my_decimal* value) {
+    memset(value, 0, sizeof(*value));
 }
