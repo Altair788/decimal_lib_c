@@ -59,7 +59,14 @@ START_TEST(my_null_decimal_already_zero){
 END_TEST
 
 
-
+START_TEST(my_get_bit_basic){
+    my_decimal val = {{0, 0, 1 << 6, 0}};
+    int index_of_bit = 70;
+    int result;
+    result = my_get_bit(val, index_of_bit);
+    ck_assert_int_eq(result, 1);
+}
+END_TEST
 
 Suite* my_helpers_suite(void) {
     Suite *s = suite_create("helpers");
@@ -72,6 +79,8 @@ Suite* my_helpers_suite(void) {
     tcase_add_test(tc_core, my_is_zero_multiple_nonzero);
     tcase_add_test(tc_core, my_null_decimal_garbage);
     tcase_add_test(tc_core, my_null_decimal_already_zero);
+    tcase_add_test(tc_core, my_get_bit_basic);
+
 
     suite_add_tcase(s, tc_core);
     return s;
