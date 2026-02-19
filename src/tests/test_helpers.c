@@ -101,6 +101,22 @@ START_TEST(my_get_sign_basic){
 }
 END_TEST
 
+START_TEST(my_set_sign_case_big_decimal_convert_to_decimal){
+    my_big_decimal val1;
+    my_decimal val2;
+    my_null_big_decimal(&val1);
+    my_null_decimal(&val2);
+
+    val1.sign = 1;
+    val2.bits[3] = 0;
+
+    my_set_sign(&val1, &val2);
+    int result = my_get_sign(&val2);
+    ck_assert_int_eq(result, 1);
+
+}
+END_TEST
+
 
 Suite* my_helpers_suite(void) {
     Suite *s = suite_create("helpers");
@@ -117,6 +133,7 @@ Suite* my_helpers_suite(void) {
     tcase_add_test(tc_core, my_set_bit_basic);
     tcase_add_test(tc_core, my_get_scale_basic);
     tcase_add_test(tc_core, my_get_sign_basic);
+    tcase_add_test(tc_core, my_set_sign_case_big_decimal_convert_to_decimal);
 
 
     suite_add_tcase(s, tc_core);
